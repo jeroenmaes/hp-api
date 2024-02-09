@@ -1,4 +1,6 @@
 
+using Microsoft.AspNetCore.Diagnostics.HealthChecks;
+
 namespace HP.Api
 {
     public class Program
@@ -25,6 +27,8 @@ namespace HP.Api
 
 
             app.MapControllers();
+
+            app.MapHealthChecks("/healthz");
 
             app.Run();
         }
