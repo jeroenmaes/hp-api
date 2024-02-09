@@ -25,7 +25,6 @@ namespace HP.Api
 
             app.UseAuthorization();
 
-
             app.MapControllers();
 
             app.MapHealthChecks("/healthz");
