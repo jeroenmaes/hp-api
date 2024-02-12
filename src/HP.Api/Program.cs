@@ -16,6 +16,7 @@ namespace HP.Api
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
             builder.Services.AddHealthChecks();
+            builder.Services.AddMemoryCache();
 
             builder.Services.Configure<RouteOptions>(options => options.LowercaseUrls = true);
 
