@@ -1,6 +1,5 @@
 
 using HP.Api.Services;
-using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 
 namespace HP.Api
 {
