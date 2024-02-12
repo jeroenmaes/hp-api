@@ -18,6 +18,8 @@ namespace HP.Api
             builder.Services.AddHealthChecks();
             builder.Services.AddMemoryCache();
 
+            builder.Services.AddHostedService<CacheService>();
+
             builder.Services.Configure<RouteOptions>(options => options.LowercaseUrls = true);
 
             var app = builder.Build();

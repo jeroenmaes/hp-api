@@ -1,13 +1,12 @@
 using HP.Api.Dto;
 using Microsoft.Extensions.Caching.Memory;
-using System.Text;
 using System.Text.Json;
 
 namespace HP.Api.Services
 {
     public class DataService
     {
-        private IMemoryCache _memoryCache;
+        private readonly IMemoryCache _memoryCache;
 
         public DataService(IMemoryCache memoryCache) 
         {
@@ -44,6 +43,12 @@ namespace HP.Api.Services
             var fileName = @"Data/characters.json";
             await using FileStream stream = File.OpenRead(fileName);
             return await JsonSerializer.DeserializeAsync<IEnumerable<Character>>(stream);
+        }
+
+        internal async Task PreloadCache()
+        {
+            await GetCharacters();
+            await GetSpells();
         }
     }
 }
