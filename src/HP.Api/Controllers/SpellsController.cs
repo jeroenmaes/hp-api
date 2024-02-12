@@ -17,7 +17,7 @@ namespace HP.Api.Controllers
             _service = service;
         }
                 
-        [Route("spells")]
+        [Route("")]
         [HttpGet]
         public async Task<IEnumerable<Spell>> GetSpells()
         {
