@@ -16,8 +16,9 @@ namespace HP.Api.Controllers
             _logger = logger;
             _service = service;
         }
-
-        [HttpGet(Name = "spells")]
+                
+        [Route("spells")]
+        [HttpGet]
         public async Task<IEnumerable<Spell>> GetSpells()
         {
             return await _service.GetSpells();
