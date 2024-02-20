@@ -3,39 +3,39 @@ using HP.Api.Services;
 
 namespace HP.Api
 {
-    public class Program
+  public class Program
+  {
+    public static void Main(string[] args)
     {
-        public static void Main(string[] args)
-        {
-            var builder = WebApplication.CreateBuilder(args);
+      var builder = WebApplication.CreateBuilder(args);
 
-            // Add services to the container.
-            builder.Services.AddTransient<DataService>();
-            builder.Services.AddControllers();
-            // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-            builder.Services.AddEndpointsApiExplorer();
-            builder.Services.AddSwaggerGen();
-            builder.Services.AddHealthChecks();
-            builder.Services.AddMemoryCache();
+      // Add services to the container.
+      builder.Services.AddTransient<DataService>();
+      builder.Services.AddControllers();
+      // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+      builder.Services.AddEndpointsApiExplorer();
+      builder.Services.AddSwaggerGen(options => { options.DocumentFilter<HealthChecksFilter>(); });
+      builder.Services.AddHealthChecks();
+      builder.Services.AddMemoryCache();
 
-            builder.Services.AddHostedService<CacheService>();
+      builder.Services.AddHostedService<CacheService>();
 
-            builder.Services.Configure<RouteOptions>(options => options.LowercaseUrls = true);
+      builder.Services.Configure<RouteOptions>(options => options.LowercaseUrls = true);
 
-            var app = builder.Build();
+      var app = builder.Build();
 
-            app.UseSwagger();
-            app.UseSwaggerUI();
+      app.UseSwagger();
+      app.UseSwaggerUI();
 
-            app.UseHttpsRedirection();
+      app.UseHttpsRedirection();
 
-            app.UseAuthorization();
+      app.UseAuthorization();
 
-            app.MapControllers();
+      app.MapControllers();
 
-            app.MapHealthChecks("/api/health");
+      app.MapHealthChecks("/api/health");
 
-            app.Run();
-        }
+      app.Run();
     }
+  }
 }
