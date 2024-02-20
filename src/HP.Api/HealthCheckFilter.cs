@@ -16,19 +16,18 @@ namespace HP.Api
 
       var properties = new Dictionary<string, OpenApiSchema>
             {
-                { "status", new OpenApiSchema() { Type = "string" } },
-                { "errors", new OpenApiSchema() { Type = "array" } }
+                { "status", new OpenApiSchema() { Type = "string" } }
             };
 
       var response = new OpenApiResponse();
-
+      response.Description = "Success";
       response.Content.Add("application/json", new OpenApiMediaType
-      {
+      {        
         Schema = new OpenApiSchema
         {
           Type = "object",
           AdditionalPropertiesAllowed = true,
-          Properties = properties,
+          Properties = properties
         }
       });
 

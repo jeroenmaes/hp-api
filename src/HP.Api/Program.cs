@@ -1,5 +1,7 @@
 ﻿
+using HealthChecks.UI.Client;
 using HP.Api.Services;
+using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 
 namespace HP.Api
 {
@@ -33,7 +35,10 @@ namespace HP.Api
 
       app.MapControllers();
 
-      app.MapHealthChecks("/api/health");
+      app.MapHealthChecks("/api/health", new HealthCheckOptions
+      {
+        ResponseWriter = UIResponseWriter.WriteHealthCheckUIResponse
+      });
 
       app.Run();
     }
