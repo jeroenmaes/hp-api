@@ -1,4 +1,4 @@
-
+﻿
 using HP.Api.Services;
 
 namespace HP.Api
@@ -33,7 +33,7 @@ namespace HP.Api
 
             app.MapControllers();
 
-            app.MapHealthChecks("/healthz");
+            app.MapHealthChecks("/api/health");
 
             app.Run();
         }
