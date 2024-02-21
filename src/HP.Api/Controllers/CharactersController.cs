@@ -1,11 +1,11 @@
-using HP.Api.Dto;
+﻿using HP.Api.Dto;
 using HP.Api.Services;
 using Microsoft.AspNetCore.Mvc;
 
 namespace HP.Api.Controllers
 {
     [ApiController]
-    [Route("api/[controller]")]
+    [Route("v1/[controller]")]
     public class CharactersController : ControllerBase
     {        
         private readonly ILogger<CharactersController> _logger;

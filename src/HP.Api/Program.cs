@@ -35,7 +35,7 @@ namespace HP.Api
 
       app.MapControllers();
 
-      app.MapHealthChecks("/api/health", new HealthCheckOptions
+      app.MapHealthChecks("/v1/health", new HealthCheckOptions
       {
         ResponseWriter = UIResponseWriter.WriteHealthCheckUIResponse
       });

@@ -5,7 +5,7 @@ namespace HP.Api
 {
   public class HealthChecksFilter : IDocumentFilter
   {
-    public const string HealthCheckEndpoint = @"/api/health";
+    public const string HealthCheckEndpoint = @"/v1/health";
 
     public void Apply(OpenApiDocument openApiDocument, DocumentFilterContext context)
     {
