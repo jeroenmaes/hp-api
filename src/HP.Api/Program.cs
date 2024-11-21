@@ -2,6 +2,7 @@
 using HealthChecks.UI.Client;
 using HP.Api.Services;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace HP.Api
 {
@@ -14,9 +15,9 @@ namespace HP.Api
       // Add services to the container.
       builder.Services.AddTransient<DataService>();
       builder.Services.AddControllers();
-      // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-      builder.Services.AddEndpointsApiExplorer();
-      builder.Services.AddSwaggerGen(options => { options.DocumentFilter<HealthChecksFilter>(); });
+      
+      builder.Services.AddOpenApi();
+
       builder.Services.AddHealthChecks();
       builder.Services.AddMemoryCache();
 
@@ -26,8 +27,9 @@ namespace HP.Api
 
       var app = builder.Build();
 
-      app.UseSwagger();
-      app.UseSwaggerUI();
+      app.MapOpenApi();
+
+      app.UseSwaggerUI(options => { options.SwaggerEndpoint("/openapi/v1.json", "v1"); });
 
       app.UseHttpsRedirection();
 
@@ -35,7 +37,7 @@ namespace HP.Api
 
       app.MapControllers();
 
-      app.MapHealthChecks("/v1/health", new HealthCheckOptions
+      app.MapHealthChecks("/health", new HealthCheckOptions
       {
         ResponseWriter = UIResponseWriter.WriteHealthCheckUIResponse
       });
