@@ -25,12 +25,19 @@ namespace HP.Api
 
       builder.Services.Configure<RouteOptions>(options => options.LowercaseUrls = true);
 
+      builder.Services.AddOutputCache(options =>
+      {
+        options.AddBasePolicy(policy => policy.Expire(TimeSpan.FromMinutes(10)));        
+      });
+
       var app = builder.Build();
 
-      app.MapOpenApi();
+      app.UseOutputCache();
+
+      app.MapOpenApi().CacheOutput();
 
       app.UseSwaggerUI(options => { options.SwaggerEndpoint("/openapi/v1.json", "v1"); });
-
+      
       app.UseHttpsRedirection();
 
       app.UseAuthorization();
