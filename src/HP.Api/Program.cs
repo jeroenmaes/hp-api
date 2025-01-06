@@ -1,8 +1,9 @@
 ﻿
+using System.Text.Json.Serialization;
+using System.Text.Json;
 using HealthChecks.UI.Client;
 using HP.Api.Services;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
-using Microsoft.Extensions.DependencyInjection;
 
 namespace HP.Api
 {
@@ -14,8 +15,19 @@ namespace HP.Api
 
       // Add services to the container.
       builder.Services.AddTransient<DataService>();
-      builder.Services.AddControllers();
-      
+
+      builder.Services.AddControllers().AddJsonOptions(o =>
+      {
+        o.JsonSerializerOptions.PropertyNamingPolicy = JsonNamingPolicy.CamelCase;
+        o.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles;
+        o.JsonSerializerOptions.DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingDefault; // ignore default values, including null for nullable types        
+        o.JsonSerializerOptions.WriteIndented = true;
+        o.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter(JsonNamingPolicy.CamelCase));
+        o.JsonSerializerOptions.AllowTrailingCommas = true;
+        o.JsonSerializerOptions.ReadCommentHandling = JsonCommentHandling.Skip;
+        o.JsonSerializerOptions.PropertyNameCaseInsensitive = true;
+      });
+
       builder.Services.AddOpenApi();
 
       builder.Services.AddHealthChecks();
