@@ -30,7 +30,6 @@ jobs:
       - name: Build and push Docker image
         uses: docker/build-push-action@v5
         with:
-          context: ./src/HP.API
           file: ./src/HP.API/Dockerfile
           tags: |
             ghcr.io/${{ github.repository_owner }}/hp-api:${{ github.sha }}
