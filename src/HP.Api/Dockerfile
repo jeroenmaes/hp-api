@@ -10,12 +10,11 @@ EXPOSE 8081
 # This stage is used to build the service project
 FROM mcr.microsoft.com/dotnet/sdk:9.0-noble AS build
 ARG BUILD_CONFIGURATION=Release
-WORKDIR /src
-COPY ["*.sln", "./"]
+WORKDIR /sources
 COPY ["HP.Api.csproj", "./"]
 RUN dotnet restore "./HP.Api.csproj"
 COPY . .
-WORKDIR "/src/."
+WORKDIR "/sources/."
 RUN dotnet build "./HP.Api.csproj" -c $BUILD_CONFIGURATION -o /app/build
 
 # This stage is used to publish the service project to be copied to the final stage
