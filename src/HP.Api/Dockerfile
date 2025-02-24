@@ -11,7 +11,7 @@ EXPOSE 8081
 FROM mcr.microsoft.com/dotnet/sdk:9.0-noble AS build
 ARG BUILD_CONFIGURATION=Release
 WORKDIR /sources
-COPY ["./HP.Api.csproj", "./"]
+COPY [".src/HP.Api/HP.Api.csproj", "./"]
 RUN dotnet restore "./HP.Api.csproj"
 COPY . .
 WORKDIR "/sources/."
