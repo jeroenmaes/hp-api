@@ -10,7 +10,7 @@
     <DockerfileContext>.</DockerfileContext>
     <RuntimeIdentifiers>linux-x64</RuntimeIdentifiers>
     <EnableSdkContainerDebugging>True</EnableSdkContainerDebugging>    
-    <ContainerBaseImage>mcr.microsoft.com/dotnet/aspnet:10.0</ContainerBaseImage>
+    <ContainerBaseImage>mcr.microsoft.com/dotnet/aspnet:9.0</ContainerBaseImage>
     <ContainerRepository>jeroenmaes/hp-api</ContainerRepository>
     <ContainerRegistry>ghcr.io</ContainerRegistry>
   </PropertyGroup>
