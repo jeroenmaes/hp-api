@@ -1,6 +1,6 @@
 # Harry Potter API
 
-A JSON-based API written in NET9 for getting information on Harry Potter characters and spells. 
+A JSON-based API written in NET10 for getting information on Harry Potter characters and spells. 
 
 Hosted at https://hp-api-1ka4.onrender.com/
 
